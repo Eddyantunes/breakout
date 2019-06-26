@@ -1,17 +1,34 @@
-<div class="main" [hidden]="isPlaying">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <div class="angular-logo" style="height: 300px; width: 300px"></div>
-  <div class="controls">
-    <label>
-      <span>How many blocks would you like to play?</span>
-      <input [(ngModel)]="amount" type="number" />
-    </label>
-    <button (click)="play()">Play Now</button>
-  </div>
-</div>
+<div class="container mt-5">
 
-<div class="blocks" *ngIf="isPlaying">
-  <div *ngFor="let block of blocks" class="angular-logo block"></div>
+  <div class="main" [hidden]="isPlaying">
+
+    <div class="row mt-5">
+      <div class="offset-md-8 mt-5">
+
+        <div class="card p-5">
+
+          <h1 class="mb-4" style="font-size: 22px">Bienvenu dans le jeux Arkanoid</h1>
+
+          <div class="form-group">
+            <label for="amout">Nombre de block : </label>
+            <input class="form-control" id="amout" [(ngModel)]="amount" type="number"/>
+          </div>
+
+          <div class="form-group">
+            <label for="dif">Difficulter : </label>
+            <input class="form-control" id="dif" [(ngModel)]="difficulter" type="number"/>
+          </div>
+
+          <button class="btn-success btn-block" (click)="play()">Jouer</button>
+
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div class="blocks" *ngIf="isPlaying">
+    <div *ngFor="let block of blocks" class="angular-logo block"></div>
+  </div>
 </div>

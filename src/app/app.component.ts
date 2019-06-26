@@ -9,6 +9,7 @@ import {Breakout} from './breakout';
 export class AppComponent {
   title = 'angular-space-breakout-game';
   amount = 20;
+  difficulter = 1;
   blocks: void[];
   isPlaying = false;
 

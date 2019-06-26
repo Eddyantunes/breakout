@@ -1,9 +1,8 @@
 body {
-  background: black url("assets/galaxy-milky-way-orbit-110854.jpg") no-repeat center center fixed;
+  background: black url("https://iphoneros.com/wp-content/uploads/2017/05/Arkanoid-vs-Space-Invaders-%E2%80%93-Launch-Trailer.jpeg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-
   font-family: sans-serif;
 }
