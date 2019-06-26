@@ -1,0 +1,17 @@
+<div class="main" [hidden]="isPlaying">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+  <div class="angular-logo" style="height: 300px; width: 300px"></div>
+  <div class="controls">
+    <label>
+      <span>How many blocks would you like to play?</span>
+      <input [(ngModel)]="amount" type="number" />
+    </label>
+    <button (click)="play()">Play Now</button>
+  </div>
+</div>
+
+<div class="blocks" *ngIf="isPlaying">
+  <div *ngFor="let block of blocks" class="angular-logo block"></div>
+</div>
