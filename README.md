@@ -1,4 +1,4 @@
-# AngularSpaceBreakoutGame
+# Breakout
 
 ![Breakout Screenshot](https://github.com/mattslocum/angular-space-breakout-game/raw/master/breakout-screenshot.jpg)
 
