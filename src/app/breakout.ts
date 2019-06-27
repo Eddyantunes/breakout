@@ -112,9 +112,9 @@ export class Breakout implements OnInit  {
   private createElements(): void {
     const $breakout: JQuery = jQuery(
       `<div class="breakout-game">
-    <button class="exit" endGame>exit</button>
-    <div class="gameOver" endGame>Game Over</div>
-    <div class="gameWon" endGame>YOU WIN</div>
+    <button class="exit" endGame>Get out</button>
+    <div class="gameOver" endGame>Pull Request refused</div>
+    <div class="gameWon" endGame>Take your chocolate</div>
     <div class="${this.paddleName}" style="left:${this.paddlePos}px"></div>
     <div class="${this.ballName}" style="left:${this.ballPosX}px; top:${this.ballPosY}px"></div>
 </div>`);
