@@ -26,9 +26,13 @@
   text-align: center;
 }
 .block {
-  height: 20px;
+  height: 30px;
   position: relative;
-  width: 60px;
+  width: 80px;
+}
+
+.card-body {
+    padding: 5px;
 }
 
 .end {
