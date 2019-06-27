@@ -1,5 +1,5 @@
 import * as JQuery from 'jquery';
-import {OnInit} from "@angular/core";
+import { OnInit } from "@angular/core";
 
 interface IBlockData {
   style: string;
@@ -10,7 +10,7 @@ interface IBlockData {
   $elem: JQuery;
 }
 
-export class Breakout implements OnInit  {
+export class Breakout implements OnInit {
 
   public gameOver = false;
   public gameWon = false;
@@ -19,7 +19,7 @@ export class Breakout implements OnInit  {
   private bodyClass = "breakout-body";
 
   public $breakoutElem: JQuery;
-  public ball: HTMLDivElement;
+  public ball: HTMLDivElement[];
   public paddle: HTMLDivElement;
   public blocks: IBlockData[] = [];
 
@@ -36,6 +36,10 @@ export class Breakout implements OnInit  {
   private ballPosY = window.innerHeight - this.paddleFromBottom - this.paddleHeight - this.ballSize;
 
   private ballSpeed = 8;
+  private ballSpeed1 = 10;
+  private ballSpeed2 = 15;
+  private ballSpeed3 = 20;
+
   private ballDirX = 5;
   private ballDirY = -5;
   private ballName = "breakout-ball";
@@ -44,7 +48,6 @@ export class Breakout implements OnInit  {
   private dataName = "breakout";
 
   ngOnInit() {
-    
   }
 
   constructor(selector: string, private onExit: Function, public id) {
@@ -69,24 +72,24 @@ export class Breakout implements OnInit  {
     return "#" + (Math.round(Math.random() * 0XFFFFFF)).toString(16);
   }
 
-  // public taile(id) {
-  //   switch (id) {
-  //     case 1:
-  //       return this.paddleWidth = 160;
-  //     case 2:
-  //       return this.paddleWidth = 160;
-  //     case 3:
-  //       return this.paddleWidth = 200;
-  //     case 4:
-  //       return this.paddleWidth = 160;
-  //     case 5:
-  //       return this.paddleWidth = 160;
-  //     case 6:
-  //       return this.paddleWidth = 160;
-  //     default:
-  //       return this.paddleWidth = 200;
-  //   }
-  // }
+  public speed() {
+    // if (this.idMonde == 1) {
+    //   return this.ballSpeed;
+    // }
+    // if (this.idMonde = 2) {
+    //   this.ballSpeed1;
+    //   }
+    //     case 3:ballName
+    //       returballName
+    //     case 4:ballName
+    //       returballName
+    //     case 5:ballName
+    //       returballName
+    //     case 6:ballName
+    //       returballName
+    //     default:
+    //       return this.paddleWidth = 200;
+  }
 
 
   public destroy(): void {
@@ -116,13 +119,17 @@ export class Breakout implements OnInit  {
     <div class="gameOver" endGame>Pull Request refused</div>
     <div class="gameWon" endGame>Take your chocolate</div>
     <div class="${this.paddleName}" style="left:${this.paddlePos}px"></div>
+    <div class="${this.ballName}" style="left:0px; top:${this.ballPosY}px"></div>
     <div class="${this.ballName}" style="left:${this.ballPosX}px; top:${this.ballPosY}px"></div>
+    <div class="${this.ballName}" style="left:${this.ballPosX}px; top:${this.ballPosY}px"></div>
+    <div class="${this.ballName}" style="left:${this.ballPosX}px; top:${this.ballPosY}px"></div>
+
 </div>`);
 
     $breakout.appendTo('body');
     this.$breakoutElem = $breakout;
     this.paddle = <HTMLDivElement>$breakout.find('.' + this.paddleName)[0];
-    this.ball = <HTMLDivElement>$breakout.find('.' + this.ballName)[0];
+    this.ball = <HTMLDivElement[]>$breakout.find('.' + this.ballName).toArray();
 
     jQuery(document.body).addClass(this.bodyClass);
 
@@ -321,8 +328,22 @@ export class Breakout implements OnInit  {
       // + 20 to center the angle
       let ang: number = paddleHit / this.paddleWidth * 140 + 20;
       // negating this.ballSpeed because we want the paddle to direct the ball up.
-      this.ballDirY = Math.sin(ang * Math.PI / 180) * -this.ballSpeed;
-      this.ballDirX = Math.cos(ang * Math.PI / 180) * -this.ballSpeed;
+      if (this.idMonde == 1) {
+        this.ballDirY = Math.sin(ang * Math.PI / 180) * -this.ballSpeed;
+        this.ballDirX = Math.cos(ang * Math.PI / 180) * -this.ballSpeed;
+      }
+      if (this.idMonde == 2) {
+        this.ballDirY = Math.sin(ang * Math.PI / 180) * -this.ballSpeed1;
+        this.ballDirX = Math.cos(ang * Math.PI / 180) * -this.ballSpeed1;
+      }
+      if (this.idMonde == 3) {
+        this.ballDirY = Math.sin(ang * Math.PI / 180) * -this.ballSpeed2;
+        this.ballDirX = Math.cos(ang * Math.PI / 180) * -this.ballSpeed2;
+      }
+      if (this.idMonde == 4) {
+        this.ballDirY = Math.sin(ang * Math.PI / 180) * -this.ballSpeed3;
+        this.ballDirX = Math.cos(ang * Math.PI / 180) * -this.ballSpeed3;
+      }
     }
 
     // did the ball fall off the bottom of the screen
@@ -330,8 +351,15 @@ export class Breakout implements OnInit  {
       this.gameOver = true;
     }
 
-    this.ball.style.left = this.ballPosX + "px";
-    this.ball.style.top = this.ballPosY + "px";
+    this.ball[0].style.left = this.ballPosX + "px";
+    this.ball[0].style.top = this.ballPosY + "px";
+    this.ball[1].style.left = this.ballPosX + "px";
+    this.ball[1].style.top = this.ballPosY + "px";
+    this.ball[2].style.left = this.ballPosX + "px";
+    this.ball[2].style.top = this.ballPosY + "px";
+    this.ball[3].style.left = this.ballPosX + "px";
+    this.ball[3].style.top = this.ballPosY + "px";
+
   }
 
   // Used to detect ball vertical collision that isn't a block or paddle
