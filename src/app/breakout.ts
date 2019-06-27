@@ -1,4 +1,5 @@
 import * as JQuery from 'jquery';
+import {OnInit} from "@angular/core";
 
 interface IBlockData {
   style: string;
@@ -9,17 +10,11 @@ interface IBlockData {
   $elem: JQuery;
 }
 
-/**
- * This was originally an easter egg. So it is 100% self contained.
- * USAGE: new Breakout(".mydivs"); // where the .mydivs are the elements that you want to be the blocks.
- * NOTE: If the block is too small, the ball might skip over it. The collision logic detects the ball
- *       moving inside the block.
- */
+export class Breakout implements OnInit  {
 
-/* istanbul ignore next */
-export class Breakout {
   public gameOver = false;
   public gameWon = false;
+  public idMonde;
 
   private bodyClass = "breakout-body";
 
@@ -28,17 +23,18 @@ export class Breakout {
   public paddle: HTMLDivElement;
   public blocks: IBlockData[] = [];
 
-  private paddleWidth = 160;
+  private paddleWidth = 200;
   private paddleHeight = 14;
   private paddleFromBottom = 20;
+
+
   private paddlePos = Math.round((window.innerWidth - this.paddleWidth) / 2);
   private paddleName = "breakout-paddle";
 
   private ballPosX = this.paddlePos + Math.round(this.paddleWidth / 2);
   private ballSize = 20;
   private ballPosY = window.innerHeight - this.paddleFromBottom - this.paddleHeight - this.ballSize;
-  // NOTE: If we make this too fast, we might skip over the block since the collision logic only detects
-  //       the ball being inside the block
+
   private ballSpeed = 8;
   private ballDirX = 5;
   private ballDirY = -5;
@@ -47,28 +43,51 @@ export class Breakout {
   private blockName = "breakout-block";
   private dataName = "breakout";
 
-  constructor(selector: string, private onExit: Function) {
+  ngOnInit() {
+    
+  }
+
+  constructor(selector: string, private onExit: Function, public id) {
     // we only want one instance running at a time
     if (jQuery('.breakout-game').length) {
       return;
     }
 
-    this.makeStyles();
-    this.createElements();
-    this.prepBlocks(selector);
+    this.idMonde = id;
+
+    if (this.idMonde) {
+      this.makeStyles();
+      this.createElements();
+      this.prepBlocks(selector);
+    }
+
 
     window.requestAnimationFrame(this.tick.bind(this));
   }
 
-
   public getRandomColor() {
-    let letters = '0123456789ABCDEF';
-    let color = '#';
-    for (let i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
+    return "#" + (Math.round(Math.random() * 0XFFFFFF)).toString(16);
   }
+
+  // public taile(id) {
+  //   switch (id) {
+  //     case 1:
+  //       return this.paddleWidth = 160;
+  //     case 2:
+  //       return this.paddleWidth = 160;
+  //     case 3:
+  //       return this.paddleWidth = 200;
+  //     case 4:
+  //       return this.paddleWidth = 160;
+  //     case 5:
+  //       return this.paddleWidth = 160;
+  //     case 6:
+  //       return this.paddleWidth = 160;
+  //     default:
+  //       return this.paddleWidth = 200;
+  //   }
+  // }
+
 
   public destroy(): void {
     jQuery(document).off('mousemove.breakout');

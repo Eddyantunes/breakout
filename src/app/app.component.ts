@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Breakout} from './breakout';
 
 @Component({
@@ -7,20 +7,46 @@ import {Breakout} from './breakout';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular-space-breakout-game';
-  amount = 20;
-  difficulter = 1;
+  amount: number;
+  dificulter = 1;
   blocks: void[];
   isPlaying = false;
+  id: number;
 
-  play() {
-    this.isPlaying = true;
-    this.blocks = Array(this.amount);
-    setTimeout(() => {
-      // sorry, not angular. This was originally an easter egg, so it doesn't use angular itself.
-      new Breakout('.block', () => {
-        this.isPlaying = false;
-      });
-    }, 0);
+  constructor() {
+
   }
+
+  play(id) {
+    this.id = id;
+    this.isPlaying = true;
+    console.log(id);
+
+      if (id === 1) {
+        this.amount = 10;
+      } else if (id === 2) {
+        this.amount = 20;
+      } else if (id === 3) {
+        this.amount = 30;
+      } else if (id === 4) {
+        this.amount = 40;
+      } else if (id === 5) {
+        this.amount = 50;
+      } else if (id === 6) {
+        this.amount = 60;
+      }
+
+
+      if (this.amount) {
+        this.blocks = Array(this.amount);
+
+        setTimeout(() => {
+          // sorry, not angular. This was originally an easter egg, so it doesn't use angular itself.
+          new Breakout('.block', () => {
+            this.isPlaying = false;
+          }, this.id);
+        }, 0);
+      }
+  }
+
 }

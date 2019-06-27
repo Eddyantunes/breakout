@@ -3,29 +3,74 @@
   <div class="main" [hidden]="isPlaying">
 
     <div class="row mt-5">
-      <div class="offset-md-8 mt-5">
 
-        <div class="card p-5">
-
-          <h1 class="mb-4" style="font-size: 22px">Bienvenu dans le jeux Arkanoid</h1>
-
-          <div class="form-group">
-            <label for="amout">Nombre de block : </label>
-            <input class="form-control" id="amout" [(ngModel)]="amount" type="number"/>
+      <div class="col-md-4">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Monde 1</h5>
+            <p class="card-text">Block : 50</p>
+            <p class="card-text">Dificulter : 5</p>
+            <a href="#" class="btn btn-primary btn-block" (click)="play(1)">Play</a>
           </div>
-
-          <div class="form-group">
-            <label for="dif">Difficulter : </label>
-            <input class="form-control" id="dif" [(ngModel)]="difficulter" type="number"/>
-          </div>
-
-          <button class="btn-success btn-block" (click)="play()">Jouer</button>
-
         </div>
-
       </div>
-    </div>
 
+      <div class="col-md-4">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Monde 2</h5>
+            <p class="card-text">Block : 60</p>
+            <p class="card-text">Dificulter : 6</p>
+            <a href="#" class="btn btn-primary btn-block" (click)="play(2)">Play</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Monde 3</h5>
+            <p class="card-text">Block : 70</p>
+            <p class="card-text">Dificulter : 7</p>
+            <a href="#" class="btn btn-primary btn-block" (click)="play(3)">Play</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mt-3">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Monde 4</h5>
+            <p class="card-text">Block : 80</p>
+            <p class="card-text">Dificulter : 8</p>
+            <a href="#" class="btn btn-primary btn-block" (click)="play(4)">Play</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mt-3">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Monde 5</h5>
+            <p class="card-text">Block : 90</p>
+            <p class="card-text">Dificulter : 9</p>
+            <a href="#" class="btn btn-primary btn-block" (click)="play(5)">Play</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mt-3">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Monde 6</h5>
+            <p class="card-text">Block : 100</p>
+            <p class="card-text">Dificulter : 10</p>
+            <a href="#" class="btn btn-primary btn-block" (click)="play(6)">Play</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 
   <div class="blocks" *ngIf="isPlaying">
