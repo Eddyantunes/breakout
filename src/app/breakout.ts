@@ -24,6 +24,10 @@ export class Breakout implements OnInit {
   public blocks: IBlockData[] = [];
 
   private paddleWidth = 200;
+  private paddleWidth1 = 160;
+  private paddleWidth2 = 120;
+  private paddleWidth3 = 80;
+
   private paddleHeight = 14;
   private paddleFromBottom = 20;
 
@@ -32,7 +36,13 @@ export class Breakout implements OnInit {
   private paddleName = "breakout-paddle";
 
   private ballPosX = this.paddlePos + Math.round(this.paddleWidth / 2);
+
   private ballSize = 20;
+  private ballSize1 = 15;
+  private ballSize2 = 10;
+  private ballSize3 = 5;
+
+
   private ballPosY = window.innerHeight - this.paddleFromBottom - this.paddleHeight - this.ballSize;
 
   private ballSpeed = 8;
@@ -71,26 +81,6 @@ export class Breakout implements OnInit {
   public getRandomColor() {
     return "#" + (Math.round(Math.random() * 0XFFFFFF)).toString(16);
   }
-
-  public speed() {
-    // if (this.idMonde == 1) {
-    //   return this.ballSpeed;
-    // }
-    // if (this.idMonde = 2) {
-    //   this.ballSpeed1;
-    //   }
-    //     case 3:ballName
-    //       returballName
-    //     case 4:ballName
-    //       returballName
-    //     case 5:ballName
-    //       returballName
-    //     case 6:ballName
-    //       returballName
-    //     default:
-    //       return this.paddleWidth = 200;
-  }
-
 
   public destroy(): void {
     jQuery(document).off('mousemove.breakout');
@@ -147,7 +137,8 @@ export class Breakout implements OnInit {
   private makeStyles(): void {
     const styleID = "breakoutStyles";
     if (!document.getElementById(styleID)) {
-      const css = `
+      if (this.idMonde == 1) {
+        const css = `
 .${this.bodyClass} {
     overflow: hidden;
 }
@@ -216,6 +207,235 @@ export class Breakout implements OnInit {
 }
 `;
 
+        // tslint:disable-next-line:ban
+        let elStyle: HTMLStyleElement = document.createElement('style');
+        elStyle.id = styleID;
+
+        elStyle.innerHTML = css;
+        document.getElementsByTagName('head')[0].appendChild(elStyle);
+      }
+    } if (this.idMonde == 2) {
+      const css = `
+.${this.bodyClass} {
+  overflow: hidden;
+}
+.${this.paddleName} {
+  background-color: red;
+  border: 2px solid white;
+  border-radius: 5px;
+  bottom: ${this.paddleFromBottom}px;
+  height: ${this.paddleHeight}px;
+  position: fixed;
+  width: ${this.paddleWidth1}px;
+  z-index: 999999;
+}
+.${this.ballName} {
+  background-color: blue;
+  border: 2px solid white;
+  border-radius: ${this.ballSize1 / 2}px;
+  height: ${this.ballSize1}px;
+  position: fixed;
+  width: ${this.ballSize1}px;
+  z-index: 999999;
+}
+.${this.blockName} {
+  z-index: 99999;
+}
+.${this.blockName}.transparent {
+  opacity: 0 !important;
+}
+.${this.blockName}::before {
+  border: 1px solid white;
+  background-color: ${this.getRandomColor()};
+  content: "";
+  display: block;
+  height: 100%;
+  opacity: 0.5;
+  position: absolute;
+  width: 100%;
+  z-index: 99999;
+}
+.exit {
+  background: red;
+  color: white;
+  font-weight: bold;
+  border: 0;
+  border-radius: 0 0 0 5px;
+  padding: 10px 20px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 99999;
+}
+.gameOver, .gameWon {
+  background: red;
+  color: white;
+  cursor: pointer;
+  display: none;
+  font-size: 60px;
+  font-weight: bold;
+  font-family: Impact;
+  left: 50%;
+  padding: 0px 10px;
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999999;
+}
+`;
+
+      // tslint:disable-next-line:ban
+      let elStyle: HTMLStyleElement = document.createElement('style');
+      elStyle.id = styleID;
+
+      elStyle.innerHTML = css;
+      document.getElementsByTagName('head')[0].appendChild(elStyle);
+    } if (this.idMonde == 3) {
+      const css = `
+.${this.bodyClass} {
+  overflow: hidden;
+}
+.${this.paddleName} {
+  background-color: red;
+  border: 2px solid white;
+  border-radius: 5px;
+  bottom: ${this.paddleFromBottom}px;
+  height: ${this.paddleHeight}px;
+  position: fixed;
+  width: ${this.paddleWidth2}px;
+  z-index: 999999;
+}
+.${this.ballName} {
+  background-color: blue;
+  border: 2px solid white;
+  border-radius: ${this.ballSize2 / 2}px;
+  height: ${this.ballSize2}px;
+  position: fixed;
+  width: ${this.ballSize2}px;
+  z-index: 999999;
+}
+.${this.blockName} {
+  z-index: 99999;
+}
+.${this.blockName}.transparent {
+  opacity: 0 !important;
+}
+.${this.blockName}::before {
+  border: 1px solid white;
+  background-color: ${this.getRandomColor()};
+  content: "";
+  display: block;
+  height: 100%;
+  opacity: 0.5;
+  position: absolute;
+  width: 100%;
+  z-index: 99999;
+}
+.exit {
+  background: red;
+  color: white;
+  font-weight: bold;
+  border: 0;
+  border-radius: 0 0 0 5px;
+  padding: 10px 20px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 99999;
+}
+.gameOver, .gameWon {
+  background: red;
+  color: white;
+  cursor: pointer;
+  display: none;
+  font-size: 60px;
+  font-weight: bold;
+  font-family: Impact;
+  left: 50%;
+  padding: 0px 10px;
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999999;
+}
+`;
+
+      // tslint:disable-next-line:ban
+      let elStyle: HTMLStyleElement = document.createElement('style');
+      elStyle.id = styleID;
+
+      elStyle.innerHTML = css;
+      document.getElementsByTagName('head')[0].appendChild(elStyle);
+    } if (this.idMonde == 4) {
+      const css = `
+.${this.bodyClass} {
+  overflow: hidden;
+}
+.${this.paddleName} {
+  background-color: red;
+  border: 2px solid white;
+  border-radius: 5px;
+  bottom: ${this.paddleFromBottom}px;
+  height: ${this.paddleHeight}px;
+  position: fixed;
+  width: ${this.paddleWidth3}px;
+  z-index: 999999;
+}
+.${this.ballName} {
+  background-color: blue;
+  border: 2px solid white;
+  border-radius: ${this.ballSize3 / 2}px;
+  height: ${this.ballSize3}px;
+  position: fixed;
+  width: ${this.ballSize3}px;
+  z-index: 999999;
+}
+.${this.blockName} {
+  z-index: 99999;
+}
+.${this.blockName}.transparent {
+  opacity: 0 !important;
+}
+.${this.blockName}::before {
+  border: 1px solid white;
+  background-color: ${this.getRandomColor()};
+  content: "";
+  display: block;
+  height: 100%;
+  opacity: 0.5;
+  position: absolute;
+  width: 100%;
+  z-index: 99999;
+}
+.exit {
+  background: red;
+  color: white;
+  font-weight: bold;
+  border: 0;
+  border-radius: 0 0 0 5px;
+  padding: 10px 20px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 99999;
+}
+.gameOver, .gameWon {
+  background: red;
+  color: white;
+  cursor: pointer;
+  display: none;
+  font-size: 60px;
+  font-weight: bold;
+  font-family: Impact;
+  left: 50%;
+  padding: 0px 10px;
+  position: fixed;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999999;
+}
+`;
+
       // tslint:disable-next-line:ban
       let elStyle: HTMLStyleElement = document.createElement('style');
       elStyle.id = styleID;
@@ -276,10 +496,27 @@ export class Breakout implements OnInit {
 
   private movePaddle(event: JQueryMouseEventObject): void {
     // keep paddle within the bounds of the screen
-    this.paddlePos = Math.max(0,
-      Math.min(event.pageX - Math.round(this.paddleWidth / 2), window.innerWidth - this.paddleWidth - 4)
-    );
-    this.paddle.style.left = this.paddlePos + "px";
+    if (this.idMonde == 1) {
+      this.paddlePos = Math.max(0,
+        Math.min(event.pageX - Math.round(this.paddleWidth / 2), window.innerWidth - this.paddleWidth - 4)
+      );
+      this.paddle.style.left = this.paddlePos + "px";
+    }if (this.idMonde == 2) {
+      this.paddlePos = Math.max(0,
+        Math.min(event.pageX - Math.round(this.paddleWidth1 / 2), window.innerWidth - this.paddleWidth1 - 4)
+      );
+      this.paddle.style.left = this.paddlePos + "px";
+    }if (this.idMonde == 3) {
+      this.paddlePos = Math.max(0,
+        Math.min(event.pageX - Math.round(this.paddleWidth2 / 2), window.innerWidth - this.paddleWidth2 - 4)
+      );
+      this.paddle.style.left = this.paddlePos + "px";
+    }if (this.idMonde == 4) {
+      this.paddlePos = Math.max(0,
+        Math.min(event.pageX - Math.round(this.paddleWidth3 / 2), window.innerWidth - this.paddleWidth3 - 4)
+      );
+      this.paddle.style.left = this.paddlePos + "px";
+    }
   }
 
   public tick(): void {
@@ -369,30 +606,75 @@ export class Breakout implements OnInit {
 
   // Used to detect ball horizontal collision that isn't a block or paddle
   private hasCollideHorz(): boolean {
-    return (this.ballPosX + this.ballSize > window.innerWidth - 4) ||
-      (this.ballPosX < 0);
+    if (this.idMonde == 1) {
+      return (this.ballPosX + this.ballSize > window.innerWidth - 4) ||
+        (this.ballPosX < 0);
+    } if (this.idMonde == 2) {
+      return (this.ballPosX + this.ballSize1 > window.innerWidth - 4) ||
+        (this.ballPosX < 0);
+    } if (this.idMonde == 3) {
+      return (this.ballPosX + this.ballSize2 > window.innerWidth - 4) ||
+        (this.ballPosX < 0);
+    } if (this.idMonde == 4) {
+      return (this.ballPosX + this.ballSize3 > window.innerWidth - 4) ||
+        (this.ballPosX < 0);
+    }
   }
 
   // NOTE: This algorithm doesn't work if we are moving fast enough to pass right over a block instead of inside it.
   private inBlock(): number {
-    for (let i = 0; i < this.blocks.length; i++) {
-      if (this.ballPosX + this.ballSize >= this.blocks[i].left &&
-        this.ballPosX <= this.blocks[i].right &&
-        this.ballPosY + this.ballSize >= this.blocks[i].top &&
-        this.ballPosY <= this.blocks[i].bottom
-      ) {
-        return i;
+    if (this.idMonde == 1) {
+      for (let i = 0; i < this.blocks.length; i++) {
+        if (this.ballPosX + this.ballSize >= this.blocks[i].left &&
+          this.ballPosX <= this.blocks[i].right &&
+          this.ballPosY + this.ballSize >= this.blocks[i].top &&
+          this.ballPosY <= this.blocks[i].bottom
+        ) {
+          return i;
+        }
       }
+      return -1;
+    } if (this.idMonde == 2) {
+      for (let i = 0; i < this.blocks.length; i++) {
+        if (this.ballPosX + this.ballSize1 >= this.blocks[i].left &&
+          this.ballPosX <= this.blocks[i].right &&
+          this.ballPosY + this.ballSize1 >= this.blocks[i].top &&
+          this.ballPosY <= this.blocks[i].bottom
+        ) {
+          return i;
+        }
+      }
+      return -1;
+    } if (this.idMonde == 3) {
+      for (let i = 0; i < this.blocks.length; i++) {
+        if (this.ballPosX + this.ballSize2 >= this.blocks[i].left &&
+          this.ballPosX <= this.blocks[i].right &&
+          this.ballPosY + this.ballSize2 >= this.blocks[i].top &&
+          this.ballPosY <= this.blocks[i].bottom
+        ) {
+          return i;
+        }
+      }
+      return -1;
+    } if (this.idMonde == 4) {
+      for (let i = 0; i < this.blocks.length; i++) {
+        if (this.ballPosX + this.ballSize3 >= this.blocks[i].left &&
+          this.ballPosX <= this.blocks[i].right &&
+          this.ballPosY + this.ballSize3 >= this.blocks[i].top &&
+          this.ballPosY <= this.blocks[i].bottom
+        ) {
+          return i;
+        }
+      }
+      return -1;
     }
-
-    return -1;
   }
 
   /**
    * Did the ball hit the paddle from the top? If so, return the location of the collision from the left edge. If not -1
    */
   private paddleHit(): number {
-    if (this.ballPosX + this.ballSize >= this.paddlePos &&
+    if (this.idMonde == 1 && this.ballPosX + this.ballSize >= this.paddlePos &&
       this.ballPosX <= this.paddlePos + this.paddleWidth &&
       // current pos is on or below the paddle
       this.ballPosY + this.ballSize >= window.innerHeight - this.paddleFromBottom - this.paddleHeight &&
@@ -400,10 +682,34 @@ export class Breakout implements OnInit {
       this.ballPosY - this.ballDirY < window.innerHeight - this.paddleFromBottom - this.paddleHeight
     ) {
       return this.ballPosX - this.paddlePos;
-    }
-
-    return -1;
+    } if (this.idMonde == 2 && this.ballPosX + this.ballSize >= this.paddlePos &&
+    this.ballPosX <= this.paddlePos + this.paddleWidth1 &&
+    // current pos is on or below the paddle
+    this.ballPosY + this.ballSize >= window.innerHeight - this.paddleFromBottom - this.paddleHeight &&
+    // last position was above the paddle
+    this.ballPosY - this.ballDirY < window.innerHeight - this.paddleFromBottom - this.paddleHeight
+  ) {
+    return this.ballPosX - this.paddlePos;
+  }if (this.idMonde == 3 && this.ballPosX + this.ballSize >= this.paddlePos &&
+    this.ballPosX <= this.paddlePos + this.paddleWidth2 &&
+    // current pos is on or below the paddle
+    this.ballPosY + this.ballSize >= window.innerHeight - this.paddleFromBottom - this.paddleHeight &&
+    // last position was above the paddle
+    this.ballPosY - this.ballDirY < window.innerHeight - this.paddleFromBottom - this.paddleHeight
+  ) {
+    return this.ballPosX - this.paddlePos;
+  }if (this.idMonde == 4 && this.ballPosX + this.ballSize >= this.paddlePos &&
+    this.ballPosX <= this.paddlePos + this.paddleWidth3 &&
+    // current pos is on or below the paddle
+    this.ballPosY + this.ballSize >= window.innerHeight - this.paddleFromBottom - this.paddleHeight &&
+    // last position was above the paddle
+    this.ballPosY - this.ballDirY < window.innerHeight - this.paddleFromBottom - this.paddleHeight
+  ) {
+    return this.ballPosX - this.paddlePos;
   }
+  return -1;
+}
+
 
   private removeBlock(i: number): void {
     this.blocks[i].$elem.addClass('transparent');
