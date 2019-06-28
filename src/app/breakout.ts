@@ -15,7 +15,7 @@ export class Breakout implements OnInit {
   public gameOver = false;
   public gameWon = false;
   public idMonde;
-
+  public dificulter: string;
   private bodyClass = "breakout-body";
 
   public $breakoutElem: JQuery;
@@ -82,6 +82,21 @@ export class Breakout implements OnInit {
     return "#" + (Math.round(Math.random() * 0XFFFFFF)).toString(16);
   }
 
+  public niveau() {
+    if (this.idMonde == 1) {
+      return this.dificulter = 'Facile';
+    }
+    if (this.idMonde == 2) {
+      return this.dificulter = 'Normal';
+    }
+    if (this.idMonde == 3) {
+      return this.dificulter = 'Difficile';
+    }
+    if (this.idMonde == 4) {
+      return this.dificulter = 'Extreme';
+    }
+  }
+
   public destroy(): void {
     jQuery(document).off('mousemove.breakout');
     this.$breakoutElem
@@ -105,6 +120,7 @@ export class Breakout implements OnInit {
   private createElements(): void {
     const $breakout: JQuery = jQuery(
       `<div class="breakout-game">
+      <div class="dificulter">Difficulté: ${this.niveau()}</div>
     <button class="exit" endGame>Get out</button>
     <div class="gameOver" endGame>Pull Request refused</div>
     <div class="gameWon" endGame>Take your chocolate</div>
@@ -190,6 +206,19 @@ export class Breakout implements OnInit {
     top: 0;
     z-index: 99999;
 }
+.difficulter {
+  background: red;
+  color: white;
+  font-weight: bold;
+  border: 0;
+  border-radius: 0 0 0 5px;
+  padding: 8px 16px;
+  opacity: 0.4;
+  position: fixed;
+  right: 0;
+  top: 300px;
+  z-index: 99999;
+}
 .gameOver, .gameWon {
     background: red;
     color: white;
@@ -265,6 +294,19 @@ export class Breakout implements OnInit {
   position: fixed;
   right: 0;
   top: 0;
+  z-index: 99999;
+}
+.difficulter {
+  background: red;
+  color: white;
+  font-weight: bold;
+  border: 0;
+  border-radius: 0 0 0 5px;
+  padding: 8px 16px;
+  opacity: 0.4;
+  position: fixed;
+  right: 0;
+  top: 300px;
   z-index: 99999;
 }
 .gameOver, .gameWon {
@@ -343,6 +385,19 @@ export class Breakout implements OnInit {
   top: 0;
   z-index: 99999;
 }
+.difficulter {
+  background: red;
+  color: white;
+  font-weight: bold;
+  border: 0;
+  border-radius: 0 0 0 5px;
+  padding: 8px 16px;
+  opacity: 0.4;
+  position: fixed;
+  right: 0;
+  top: 300px;
+  z-index: 99999;
+}
 .gameOver, .gameWon {
   background: red;
   color: white;
@@ -417,6 +472,19 @@ export class Breakout implements OnInit {
   position: fixed;
   right: 0;
   top: 0;
+  z-index: 99999;
+}
+.difficulter {
+  background: red;
+  color: white;
+  font-weight: bold;
+  border: 0;
+  border-radius: 0 0 0 5px;
+  padding: 8px 16px;
+  opacity: 0.4;
+  position: fixed;
+  right: 0;
+  top: 300px;
   z-index: 99999;
 }
 .gameOver, .gameWon {
@@ -501,17 +569,17 @@ export class Breakout implements OnInit {
         Math.min(event.pageX - Math.round(this.paddleWidth / 2), window.innerWidth - this.paddleWidth - 4)
       );
       this.paddle.style.left = this.paddlePos + "px";
-    }if (this.idMonde == 2) {
+    } if (this.idMonde == 2) {
       this.paddlePos = Math.max(0,
         Math.min(event.pageX - Math.round(this.paddleWidth1 / 2), window.innerWidth - this.paddleWidth1 - 4)
       );
       this.paddle.style.left = this.paddlePos + "px";
-    }if (this.idMonde == 3) {
+    } if (this.idMonde == 3) {
       this.paddlePos = Math.max(0,
         Math.min(event.pageX - Math.round(this.paddleWidth2 / 2), window.innerWidth - this.paddleWidth2 - 4)
       );
       this.paddle.style.left = this.paddlePos + "px";
-    }if (this.idMonde == 4) {
+    } if (this.idMonde == 4) {
       this.paddlePos = Math.max(0,
         Math.min(event.pageX - Math.round(this.paddleWidth3 / 2), window.innerWidth - this.paddleWidth3 - 4)
       );
@@ -683,32 +751,32 @@ export class Breakout implements OnInit {
     ) {
       return this.ballPosX - this.paddlePos;
     } if (this.idMonde == 2 && this.ballPosX + this.ballSize >= this.paddlePos &&
-    this.ballPosX <= this.paddlePos + this.paddleWidth1 &&
-    // current pos is on or below the paddle
-    this.ballPosY + this.ballSize >= window.innerHeight - this.paddleFromBottom - this.paddleHeight &&
-    // last position was above the paddle
-    this.ballPosY - this.ballDirY < window.innerHeight - this.paddleFromBottom - this.paddleHeight
-  ) {
-    return this.ballPosX - this.paddlePos;
-  }if (this.idMonde == 3 && this.ballPosX + this.ballSize >= this.paddlePos &&
-    this.ballPosX <= this.paddlePos + this.paddleWidth2 &&
-    // current pos is on or below the paddle
-    this.ballPosY + this.ballSize >= window.innerHeight - this.paddleFromBottom - this.paddleHeight &&
-    // last position was above the paddle
-    this.ballPosY - this.ballDirY < window.innerHeight - this.paddleFromBottom - this.paddleHeight
-  ) {
-    return this.ballPosX - this.paddlePos;
-  }if (this.idMonde == 4 && this.ballPosX + this.ballSize >= this.paddlePos &&
-    this.ballPosX <= this.paddlePos + this.paddleWidth3 &&
-    // current pos is on or below the paddle
-    this.ballPosY + this.ballSize >= window.innerHeight - this.paddleFromBottom - this.paddleHeight &&
-    // last position was above the paddle
-    this.ballPosY - this.ballDirY < window.innerHeight - this.paddleFromBottom - this.paddleHeight
-  ) {
-    return this.ballPosX - this.paddlePos;
+      this.ballPosX <= this.paddlePos + this.paddleWidth1 &&
+      // current pos is on or below the paddle
+      this.ballPosY + this.ballSize >= window.innerHeight - this.paddleFromBottom - this.paddleHeight &&
+      // last position was above the paddle
+      this.ballPosY - this.ballDirY < window.innerHeight - this.paddleFromBottom - this.paddleHeight
+    ) {
+      return this.ballPosX - this.paddlePos;
+    } if (this.idMonde == 3 && this.ballPosX + this.ballSize >= this.paddlePos &&
+      this.ballPosX <= this.paddlePos + this.paddleWidth2 &&
+      // current pos is on or below the paddle
+      this.ballPosY + this.ballSize >= window.innerHeight - this.paddleFromBottom - this.paddleHeight &&
+      // last position was above the paddle
+      this.ballPosY - this.ballDirY < window.innerHeight - this.paddleFromBottom - this.paddleHeight
+    ) {
+      return this.ballPosX - this.paddlePos;
+    } if (this.idMonde == 4 && this.ballPosX + this.ballSize >= this.paddlePos &&
+      this.ballPosX <= this.paddlePos + this.paddleWidth3 &&
+      // current pos is on or below the paddle
+      this.ballPosY + this.ballSize >= window.innerHeight - this.paddleFromBottom - this.paddleHeight &&
+      // last position was above the paddle
+      this.ballPosY - this.ballDirY < window.innerHeight - this.paddleFromBottom - this.paddleHeight
+    ) {
+      return this.ballPosX - this.paddlePos;
+    }
+    return -1;
   }
-  return -1;
-}
 
 
   private removeBlock(i: number): void {
