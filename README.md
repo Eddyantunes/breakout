@@ -2,6 +2,7 @@
 
 ![Breakout Screenshot](https://github.com/mattslocum/angular-space-breakout-game/raw/master/breakout-screenshot.jpg)
 
+This is the first version of this breakout game.
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.6.
 
 This will be launched into space via https://deployto.space/.
