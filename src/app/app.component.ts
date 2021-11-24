@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Breakout} from './breakout';
 
 @Component({
@@ -6,7 +6,7 @@ import {Breakout} from './breakout';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   amount: number;
   dificulter = 1;
   blocks: void[];
@@ -15,6 +15,12 @@ export class AppComponent {
 
   constructor() {
 
+  }
+
+  ngOnInit() {
+    console.log(
+      'Je suis un test'
+    );
   }
 
   play(id) {
